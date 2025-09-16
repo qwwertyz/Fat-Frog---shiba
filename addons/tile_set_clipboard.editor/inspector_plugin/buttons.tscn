@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://15irffcojcad"]
+
+[ext_resource type="Script" uid="uid://bogq3q61adc51" path="res://addons/tile_set_clipboard.editor/inspector_plugin/buttons.gd" id="1_5qnko"]
+[ext_resource type="Shortcut" uid="uid://ci7c4wgvxg64f" path="res://addons/tile_set_clipboard.editor/inspector_plugin/default_copy_shortcut.tres" id="2_gefb0"]
+[ext_resource type="Shortcut" uid="uid://ln1f7utnjjg3" path="res://addons/tile_set_clipboard.editor/inspector_plugin/default_paste_shortcut.tres" id="3_ys6ym"]
+
+[node name="Buttons" type="HBoxContainer"]
+offset_right = 305.0
+offset_bottom = 146.0
+focus_mode = 2
+script = ExtResource("1_5qnko")
+
+[node name="CopyButton" type="Button" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+shortcut = ExtResource("2_gefb0")
+text = "Copy"
+
+[node name="PasteButton" type="Button" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+shortcut = ExtResource("3_ys6ym")
+text = "Paste"
+
+[node name="SettingsButton" type="Button" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Settings"

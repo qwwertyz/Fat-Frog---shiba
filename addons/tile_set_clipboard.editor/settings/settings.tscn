@@ -1,0 +1,60 @@
+[gd_scene load_steps=3 format=3 uid="uid://fn8w22fetusk"]
+
+[ext_resource type="PackedScene" uid="uid://dv15yco62eok5" path="res://addons/tile_set_clipboard.editor/settings/property_selector.tscn" id="1_0asvu"]
+[ext_resource type="Script" uid="uid://csapyr2jv37qx" path="res://addons/tile_set_clipboard.editor/settings/settings.gd" id="1_woigr"]
+
+[node name="Settings" type="AcceptDialog"]
+auto_translate_mode = 1
+title = "Settings"
+size = Vector2i(100, 117)
+ok_button_text = "Close"
+script = ExtResource("1_woigr")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+
+[node name="CopiedPropertiesSelector" parent="VBoxContainer" instance=ExtResource("1_0asvu")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+ignored_properties = PackedStringArray("script", "atlas_coords", "size_in_atlas")
+empty_targets_message = "Please copy some tiles to choose properties from."
+
+[node name="Buttons" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+alignment = 1
+
+[node name="EditCopyShortcut" type="Button" parent="VBoxContainer/Buttons"]
+layout_mode = 2
+size_flags_horizontal = 4
+tooltip_text = "Opens the shortcut in the inspector. Selecting anything else will bring back the TileSetEditor."
+text = "Edit Copy Shortcut"
+
+[node name="EditPasteShortcut" type="Button" parent="VBoxContainer/Buttons"]
+layout_mode = 2
+size_flags_horizontal = 4
+tooltip_text = "Opens the shortcut in the inspector. Selecting anything else will bring back the TileSetEditor."
+text = "Edit Paste Shortcut"
+
+[node name="RememberFilters" type="CheckButton" parent="VBoxContainer"]
+layout_mode = 2
+tooltip_text = "If set to false, every filter in this window will be lost thee next time you copy."
+text = "Preserve filters from a copy to another"
+
+[node name="RememberWindow" type="CheckButton" parent="VBoxContainer"]
+layout_mode = 2
+tooltip_text = "If true, closing and reopening this window will preserve the window position and size."
+text = "Preserve this window position and size"
+
+[connection signal="canceled" from="." to="." method="_on_exiting"]
+[connection signal="close_requested" from="." to="." method="_on_exiting"]
+[connection signal="confirmed" from="." to="." method="_on_exiting"]
+[connection signal="pressed" from="VBoxContainer/Buttons/EditCopyShortcut" to="." method="_on_edit_copy_shortcut_pressed"]
+[connection signal="pressed" from="VBoxContainer/Buttons/EditPasteShortcut" to="." method="_on_edit_paste_shortcut_pressed"]
+[connection signal="toggled" from="VBoxContainer/RememberFilters" to="." method="_on_remember_filters_toggled"]
+[connection signal="toggled" from="VBoxContainer/RememberWindow" to="." method="_on_remember_window_toggled"]
